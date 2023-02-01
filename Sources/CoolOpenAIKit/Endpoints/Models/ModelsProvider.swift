@@ -8,9 +8,9 @@
 import Foundation
 
 /// List and describe the various models available in the API. You can refer to the [Models](https://beta.openai.com/docs/models) documentation to understand what models are available and the differences between them.
-struct ModelsProvider: Provider {
+public struct ModelsProvider: Provider {
     
-    let client: OpenAI.Client
+    public let client: OpenAI.Client!
 
     // MARK: List Models - /v1/models
     

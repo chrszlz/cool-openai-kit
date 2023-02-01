@@ -10,13 +10,15 @@ import Foundation
 /// Retrieve a specified model instance, providing basic information about the model such as the owner and permissioning.
 ///
 /// [https://beta.openai.com/docs/api-reference/models/retrieve](https://beta.openai.com/docs/api-reference/models/retrieve)
-struct RetrieveModel: Endpoint {
+public struct RetrieveModel: Endpoint {
 
-    typealias Response = Model
+    /// Endpoint
+    public typealias Response = Model
     
-    var path: String { "/v1/models/\(model)" }
-    var method: HTTPMethod { .GET }
+    public var path: String { "/v1/models/\(model)" }
+    public var method: HTTPMethod { .GET }
     
-    let model: String
+    /// Parameters
+    public let model: String
     
 }

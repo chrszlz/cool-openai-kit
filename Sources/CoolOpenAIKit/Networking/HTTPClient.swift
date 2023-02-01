@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPMethod: String, Sendable {
+public enum HTTPMethod: String, Sendable {
     case DELETE
     case GET
     case PATCH
@@ -15,9 +15,9 @@ enum HTTPMethod: String, Sendable {
     case PUT
 }
 
-actor HTTPClient {
+public actor HTTPClient {
     
-    typealias Response = Codable & Sendable
+    public typealias Response = Codable & Sendable
     
     public private(set) var activeTasks = [String: Task<Response?, Error>]()
     public private(set) var failedTasks = [String: Task<Response?, Error>]()
@@ -109,7 +109,7 @@ extension HTTPClient {
 
 extension HTTPClient {
     
-    enum HTTPError<T: HTTPClient.Response>: Swift.Error {
+    public enum HTTPError<T: HTTPClient.Response>: Swift.Error {
         case invalidURL(endpoint: any Endpoint<T>, type: T.Type, config: OpenAI.Configuration)
         case badResponse(request: URLRequest, response: URLResponse, type: T.Type)
         case failedDecoding(request: URLRequest, type: T.Type, error: DecodingError)

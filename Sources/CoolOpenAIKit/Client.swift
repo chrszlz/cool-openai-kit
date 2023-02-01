@@ -8,18 +8,19 @@
 import UIKit
 
 extension Endpoint {
-    var scheme: String { "https" }
-    var host: String { "api.openai.com" }
+    /// OpenAI API
+    public var scheme: String { "https" }
+    public var host: String { "api.openai.com" }
     
     /// Defaults
-    var header: [String : String]? { nil }
-    var body: (Encodable & Sendable)? { nil }
+    public var header: [String : String]? { nil }
+    public var body: (Encodable & Sendable)? { nil }
 }
 
 
-struct OpenAI {
+public struct OpenAI {
     
-    actor Client {
+    public actor Client {
         private let httpClient: HTTPClient
         private let configuration: Configuration
         
@@ -74,7 +75,7 @@ struct OpenAI {
 
 extension OpenAI {
     
-    struct Configuration {
+    public struct Configuration {
         let apiKey: String
         let organization: String?
         
@@ -94,7 +95,7 @@ extension OpenAI {
         }
     }
     
-    enum Error<T>: Swift.Error {
+    public enum Error<T>: Swift.Error {
         case invalidURL(any Endpoint<T>)
     }
     
@@ -112,9 +113,7 @@ extension URLRequest {
     
 }
 
-protocol Provider {
-    var client: OpenAI.Client { get }
-    
-    init(client: OpenAI.Client)
+public protocol Provider {
+    var client: OpenAI.Client! { get }
 }
 

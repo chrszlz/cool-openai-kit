@@ -9,7 +9,7 @@ import Foundation
 
 extension Completions {
     
-    enum Model: String, Codable {
+    public enum Model: String, Codable, Sendable {
         case davinci = "text-davinci-003"
         case curie = "text-curie-001"
         case babbage = "text-babbage-001"

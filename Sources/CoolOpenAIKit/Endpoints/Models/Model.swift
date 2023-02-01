@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Model: HTTPClient.Response {
+public struct Model: HTTPClient.Response {
     
     let id: String
     let object: String
@@ -29,7 +29,7 @@ struct Model: HTTPClient.Response {
 
 extension Model {
     
-    struct Permission: HTTPClient.Response {
+    public struct Permission: HTTPClient.Response {
         let id: String
         let object: String
         let created: Date

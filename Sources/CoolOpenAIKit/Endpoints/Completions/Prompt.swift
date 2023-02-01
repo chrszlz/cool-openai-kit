@@ -9,7 +9,7 @@ import Foundation
 
 extension Completions {
     
-    enum Prompt: CustomStringConvertible {
+    public enum Prompt: CustomStringConvertible {
         case basic(prompt: String)
         case chatbot(message: String, botPrompt: String, conversation: [RawMessage])
         
@@ -31,7 +31,7 @@ extension Completions {
             }
         }
         
-        var description: String {
+        public var description: String {
             switch self {
             case .basic:
                 return "Prompt.basic(\"\(self.string)\")"
@@ -45,7 +45,7 @@ extension Completions {
 
 extension Completions.Prompt {
     
-    enum Chatbot: String {
+    public enum Chatbot: String {
         case support = "You are a friendly support person. The customer will ask you questions, and you will provide polite responses"
         
         static func entries(from messages: [RawMessage]) -> String {
@@ -77,9 +77,9 @@ extension Completions.Prompt {
     
 }
 
-struct RawMessage: Hashable {
+public struct RawMessage: Hashable {
 
-    enum Data: Hashable {
+    public enum Data: Hashable {
         case text(String)
         case url(URL)
         case image
@@ -93,12 +93,12 @@ struct RawMessage: Hashable {
 
 }
 
-enum User: Int {
+public enum User: Int {
     case chatbot
     case user
 }
 
-enum MessageStatus: Hashable {
+public enum MessageStatus: Hashable {
     case sent
     case received
     case read

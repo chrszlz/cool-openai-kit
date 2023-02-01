@@ -8,15 +8,15 @@
 import Foundation
 
 /// Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
-struct Completions: Endpoint {
+public struct Completions: Endpoint {
     
-    typealias Response = Completions.ResponseType
+    public typealias Response = Completions.ResponseType
     
-    var path: String { "/v1/completions" }
-    var method: HTTPMethod { .POST }
-    let body: (Encodable & Sendable)?
+    public var path: String { "/v1/completions" }
+    public var method: HTTPMethod { .POST }
+    public let body: (Encodable & Sendable)?
     
-    init(request: Request) {
+    public init(request: Request) {
         self.body = request
     }
     
@@ -26,7 +26,7 @@ struct Completions: Endpoint {
 
 extension Completions {
     
-    struct Request: Encodable, Sendable {
+    public struct Request: Encodable, Sendable {
         /**
          ID of the model to use. You can use the [List models](https://beta.openai.com/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](https://beta.openai.com/docs/models/overview) for descriptions of them
          */
@@ -182,7 +182,7 @@ extension Completions {
 
 extension Completions {
     
-    struct ResponseType: HTTPClient.Response {
+    public struct ResponseType: HTTPClient.Response {
         let id: String
         let object: String
         let created: Date
@@ -198,7 +198,7 @@ extension Completions {
         
     }
     
-    struct Choice: HTTPClient.Response {
+    public struct Choice: HTTPClient.Response {
         let text: String
         let index: Int
         let logprobs: Int?

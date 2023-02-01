@@ -8,9 +8,9 @@
 import Foundation
 
 /// Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
-struct CompletionsProvider: Provider {
+public struct CompletionsProvider: Provider {
     
-    let client: OpenAI.Client
+    public let client: OpenAI.Client!
     
     // MARK: Create completion - /v1/completions
     

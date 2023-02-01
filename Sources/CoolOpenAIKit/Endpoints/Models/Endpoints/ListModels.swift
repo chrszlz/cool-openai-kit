@@ -10,18 +10,19 @@ import Foundation
 /// List all currently available models, and provides basic information about each one such as the owner and availability.
 ///
 /// [https://beta.openai.com/docs/api-reference/models](https://beta.openai.com/docs/api-reference/models)
-struct ListModels: Endpoint {
+public struct ListModels: Endpoint {
     
-    typealias Response = ResponseType
+    /// Endpoint
+    public typealias Response = ResponseType
     
-    var path: String { "/v1/models" }
-    var method: HTTPMethod { .GET }
+    public var path: String { "/v1/models" }
+    public var method: HTTPMethod { .GET }
     
 }
 
 extension ListModels {
     
-    struct ResponseType: HTTPClient.Response {
+    public struct ResponseType: HTTPClient.Response {
         let object: String
         let data: [Model]
         

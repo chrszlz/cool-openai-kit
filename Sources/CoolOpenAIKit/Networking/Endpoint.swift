@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Endpoint<Response>: Sendable {
+public protocol Endpoint<Response>: Sendable {
     associatedtype Response: HTTPClient.Response
     
     var scheme: String { get }
