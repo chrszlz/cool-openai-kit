@@ -30,7 +30,7 @@ extension Completions {
         /**
          ID of the model to use. You can use the [List models](https://beta.openai.com/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](https://beta.openai.com/docs/models/overview) for descriptions of them
          */
-        let model: Completions.Model
+        public let model: Completions.Model
         /**
          Defaults to `<|endoftext|>`
          
@@ -38,13 +38,13 @@ extension Completions {
          
          Note that `<|endoftext|>` is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document.
          */
-        let prompt: [String]?
+        public let prompt: [String]?
         /**
          Defaults to `nil`
          
          The suffix that comes after a completion of inserted text.
          */
-        let suffix: String?
+        public let suffix: String?
         /**
          Defaults to `16`
          
@@ -52,7 +52,7 @@ extension Completions {
          
          The token count of your prompt plus `maxTokens` cannot exceed the model's context length. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
          */
-        let maxTokens: Int?
+        public let maxTokens: Int?
         /**
          Defaults to `1`
          
@@ -60,7 +60,7 @@ extension Completions {
          
          We generally recommend altering this or `topP` but not both.
          */
-        let temperature: Double?
+        public let temperature: Double?
         /**
          Defaults to `1`
          
@@ -68,7 +68,7 @@ extension Completions {
          
          We generally recommend altering this or temperature but not both.
          */
-        let topP: Double?
+        public let topP: Double?
         /**
          Defaults to `1`
          
@@ -76,13 +76,13 @@ extension Completions {
          
          Note: Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `maxTokens` and `stop`.
          */
-        let n: Int?
+        public let n: Int?
         /**
          Defaults to `false`
          
          Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.
          */
-        let stream: Bool?
+        public let stream: Bool?
         /**
          Defaults to `nil`
          
@@ -90,19 +90,19 @@ extension Completions {
          
          The maximum value for `logprobs` is 5. If you need more than this, please contact us through our [Help center](https://help.openai.com/) and describe your use case.
          */
-        let logprobs: Int?
+        public let logprobs: Int?
         /**
          Defaults to `false`
          
          Echo back the prompt in addition to the completion
          */
-        let echo: Bool?
+        public let echo: Bool?
         /**
          Defaults to `nil`
          
          Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.
          */
-        let stop: [String]?
+        public let stop: [String]?
         /**
          Defaults to `0`
          
@@ -110,7 +110,7 @@ extension Completions {
          
          [See more information about frequency and presence penalties](https://beta.openai.com/docs/api-reference/parameter-details)
          */
-        let presencePenalty: Double?
+        public let presencePenalty: Double?
         /**
          Defaults to `0`
          
@@ -118,7 +118,7 @@ extension Completions {
          
          [See more information about frequency and presence penalties.](https://beta.openai.com/docs/api-reference/parameter-details)
          */
-        let frequencyPenalty: Double?
+        public let frequencyPenalty: Double?
         /**
          Defaults to `1`
          
@@ -128,7 +128,7 @@ extension Completions {
          
          Note: Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `maxTokens` and `stop`.
          */
-        let bestOf: Int?
+        public let bestOf: Int?
         /**
          Defaults to `nil`
          Modify the likelihood of specified tokens appearing in the completion.
@@ -137,14 +137,14 @@ extension Completions {
          
          As an example, you can pass `{"50256": -100}` to prevent the `<|endoftext|>` token from being generated.
          */
-        let logitBias: [String: Int]?
+        public let logitBias: [String: Int]?
         /**
          A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more.](https://beta.openai.com/docs/guides/safety-best-practices/end-user-ids)
          */
-        let user: String?
+        public let user: String?
         
         /// See `Request` for information about parameters
-        init(model: Completions.Model, prompt: [String]?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
+        public init(model: Completions.Model, prompt: [String]?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
             self.model = model
             self.prompt = prompt
             self.suffix = suffix
@@ -164,13 +164,13 @@ extension Completions {
         }
         
         /// See `Request` for information about parameters
-        init(model: Completions.Model, prompt: String?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
+        public init(model: Completions.Model, prompt: String?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
             let prompt: [String] = [prompt].compactMap { $0 }
             self.init(model: model, prompt: prompt, suffix: suffix, maxTokens: maxTokens, temperature: temperature, topP: topP, n: n, stream: stream, logprobs: logprobs, echo: echo, stop: stop, presencePenalty: presencePenalty, frequencyPenalty: frequencyPenalty, bestOf: bestOf, logitBias: logitBias, user: user)
         }
         
         /// See `Request` for information about parameters
-        init(model: Completions.Model, prompt: Completions.Prompt?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
+        public init(model: Completions.Model, prompt: Completions.Prompt?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) {
             let prompt: String? = prompt?.string
             self.init(model: model, prompt: prompt, suffix: suffix, maxTokens: maxTokens, temperature: temperature, topP: topP, n: n, stream: stream, logprobs: logprobs, echo: echo, stop: stop, presencePenalty: presencePenalty, frequencyPenalty: frequencyPenalty, bestOf: bestOf, logitBias: logitBias, user: user)
         }
@@ -183,12 +183,12 @@ extension Completions {
 extension Completions {
     
     public struct ResponseType: HTTPClient.Response {
-        let id: String
-        let object: String
-        let created: Date
-        let model: String
-        let choices: [Completions.Choice]
-        let usage: [String: Int]
+        public let id: String
+        public let object: String
+        public let created: Date
+        public let model: String
+        public let choices: [Completions.Choice]
+        public let usage: [String: Int]
         
         // MARK: CustomStringConvertible
         
@@ -199,10 +199,10 @@ extension Completions {
     }
     
     public struct Choice: HTTPClient.Response {
-        let text: String
-        let index: Int
-        let logprobs: Int?
-        let finishReason: String
+        public let text: String
+        public let index: Int
+        public let logprobs: Int?
+        public let finishReason: String
         
         // MARK: CustomStringConvertible
         

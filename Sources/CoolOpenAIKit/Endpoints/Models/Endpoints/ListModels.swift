@@ -23,11 +23,11 @@ public struct ListModels: Endpoint {
 extension ListModels {
     
     public struct ResponseType: HTTPClient.Response {
-        let object: String
-        let data: [Model]
+        public let object: String
+        public let data: [Model]
         
         /// Convenience getter for `data`
-        var models: [Model] {
+        public var models: [Model] {
             data
         }
         

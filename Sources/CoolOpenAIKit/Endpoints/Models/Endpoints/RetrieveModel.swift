@@ -11,7 +11,7 @@ import Foundation
 ///
 /// [https://beta.openai.com/docs/api-reference/models/retrieve](https://beta.openai.com/docs/api-reference/models/retrieve)
 public struct RetrieveModel: Endpoint {
-
+    
     /// Endpoint
     public typealias Response = Model
     

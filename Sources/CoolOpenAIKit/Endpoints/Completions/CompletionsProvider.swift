@@ -20,7 +20,7 @@ public struct CompletionsProvider: Provider {
     ///
     /// - Parameters:
     ///     - request: Given prompt and parameters for the request
-    func create(_ request: Completions.Request) async throws -> [Completions.Choice]? {
+    public func create(_ request: Completions.Request) async throws -> [Completions.Choice]? {
         let endpoint = Completions(request: request)
         return try await client.execute(endpoint)?.choices
     }
@@ -32,7 +32,7 @@ public struct CompletionsProvider: Provider {
     /// - Parameters:
     ///     - request: Given prompt and parameters for the request
     ///     - completion: Receives an optional list of choices
-    func create(_ request: Completions.Request, completion: @escaping @Sendable ([Completions.Choice]?) -> ()) {
+    public func create(_ request: Completions.Request, completion: @escaping @Sendable ([Completions.Choice]?) -> ()) {
         let endpoint = Completions(request: request)
         client.execute(endpoint) { response in
             completion(response?.choices)
@@ -45,7 +45,7 @@ public struct CompletionsProvider: Provider {
     ///
     /// - Parameters:
     ///     (chuckles nervously)
-    func create(_ model: Completions.Model, prompt: Completions.Prompt?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) async throws -> [Completions.Choice]? {
+    public func create(_ model: Completions.Model, prompt: Completions.Prompt?, suffix: String? = nil, maxTokens: Int? = nil, temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, logprobs: Int? = nil, echo: Bool? = nil, stop: [String]? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, bestOf: Int? = nil, logitBias: [String : Int]? = nil, user: String? = nil) async throws -> [Completions.Choice]? {
         let prompt: String? = prompt?.string
         let request = Completions.Request(model: model, prompt: prompt, suffix: suffix, maxTokens: maxTokens, temperature: temperature, topP: topP, n: n, stream: stream, logprobs: logprobs, echo: echo, stop: stop, presencePenalty: presencePenalty, frequencyPenalty: frequencyPenalty, bestOf: bestOf, logitBias: logitBias, user: user)
         return try await create(request)

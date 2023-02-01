@@ -13,7 +13,7 @@ extension Completions {
         case basic(prompt: String)
         case chatbot(message: String, botPrompt: String, conversation: [RawMessage])
         
-        var string: String {
+        public var string: String {
             switch self {
             case let .basic(prompt):
                 return prompt
@@ -48,19 +48,19 @@ extension Completions.Prompt {
     public enum Chatbot: String {
         case support = "You are a friendly support person. The customer will ask you questions, and you will provide polite responses"
         
-        static func entries(from messages: [RawMessage]) -> String {
+        public static func entries(from messages: [RawMessage]) -> String {
             messages.map { entry(for: $0) }.joined(separator: "\n")
         }
         
-        static func question(_ question: String) -> String {
+        public static func question(_ question: String) -> String {
             "Q: " + question
         }
         
-        static func answer(_ answer: String) -> String {
+        public static func answer(_ answer: String) -> String {
             "A: " + answer
         }
         
-        static func entry(for message: RawMessage) -> String {
+        public static func entry(for message: RawMessage) -> String {
             let isBot = message.userId == User.chatbot.rawValue
             let prefix: (String) -> String = isBot ? answer : question
             
@@ -78,19 +78,19 @@ extension Completions.Prompt {
 }
 
 public struct RawMessage: Hashable {
-
+    
     public enum Data: Hashable {
         case text(String)
         case url(URL)
         case image
     }
-
-    var id: UUID
-    var date: Date
-    var data: Data
-    var userId: Int
-    var status: MessageStatus = .sent
-
+    
+    public var id: UUID
+    public var date: Date
+    public var data: Data
+    public var userId: Int
+    public var status: MessageStatus = .sent
+    
 }
 
 public enum User: Int {

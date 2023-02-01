@@ -34,7 +34,7 @@ public struct OpenAI {
         /// Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
         nonisolated public lazy var completions = CompletionsProvider(client: self)
         
-        init(config: Configuration? = .init()) {
+        public init(config: Configuration? = .init()) {
             guard let config = config else {
                 fatalError("\(Self.self) missing client configuration")
             }
@@ -50,14 +50,14 @@ public struct OpenAI {
             self.httpClient = HTTPClient(decoder: self.decoder)
         }
         
-        func execute<T: HTTPClient.Response>(_ endpoint: any Endpoint<T>) async throws -> T? {
+        public func execute<T: HTTPClient.Response>(_ endpoint: any Endpoint<T>) async throws -> T? {
             guard let request = URLRequest(encoder, endpoint: endpoint, configuration: configuration) else {
                 throw Error.invalidURL(endpoint)
             }
             return try await httpClient.execute(request: request, model: T.self)
         }
         
-        nonisolated func execute<T: HTTPClient.Response>(_ endpoint: any Endpoint<T>, completion: @escaping @Sendable (T?) -> ()) {
+        nonisolated public func execute<T: HTTPClient.Response>(_ endpoint: any Endpoint<T>, completion: @escaping @Sendable (T?) -> ()) {
             Task {
                 do {
                     let response = try await execute(endpoint)
@@ -75,16 +75,16 @@ public struct OpenAI {
 
 extension OpenAI {
     
-    public struct Configuration {
-        let apiKey: String
-        let organization: String?
+    public struct Configuration: Sendable {
+        public let apiKey: String
+        public let organization: String?
         
-        init(apiKey: String, organization: String? = nil) {
+        public init(apiKey: String, organization: String? = nil) {
             self.apiKey = apiKey
             self.organization = organization
         }
         
-        init?(apiKey: String? = nil, organization: String? = nil) {
+        public init?(apiKey: String? = nil, organization: String? = nil) {
             let key = apiKey ?? ProcessInfo.processInfo.environment["OPENAI_API_KEY"]
             let org = organization ?? ProcessInfo.processInfo.environment["OPENAI_ORGANIZATION"]
             guard let key = key else {
@@ -103,7 +103,7 @@ extension OpenAI {
 
 extension URLRequest {
     
-    init?<T>(_ encoder: JSONEncoder, endpoint: any Endpoint<T>, configuration: OpenAI.Configuration) {
+    public init?<T>(_ encoder: JSONEncoder, endpoint: any Endpoint<T>, configuration: OpenAI.Configuration) {
         self.init(encoder, endpoint: endpoint, headers: [
             "Content-Type": "application/json",
             "Authorization": "Bearer \(configuration.apiKey)",

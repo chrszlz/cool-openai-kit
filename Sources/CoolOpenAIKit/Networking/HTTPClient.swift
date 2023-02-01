@@ -25,11 +25,11 @@ public actor HTTPClient {
     private let session = URLSession.shared
     private let decoder: JSONDecoder
     
-    init(decoder: JSONDecoder) {
+    public init(decoder: JSONDecoder) {
         self.decoder = decoder
     }
     
-    func execute<T: Response>(request: URLRequest, model type: T.Type) async throws -> T? {
+    public func execute<T: Response>(request: URLRequest, model type: T.Type) async throws -> T? {
         if let existingTask = activeTasks[request.id] {
             guard let value = try await existingTask.value as? T else {
                 throw HTTPError.typeCastFailed(request: request, type: type, task: existingTask)

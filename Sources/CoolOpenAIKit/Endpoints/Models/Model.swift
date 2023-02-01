@@ -9,13 +9,13 @@ import Foundation
 
 public struct Model: HTTPClient.Response {
     
-    let id: String
-    let object: String
-    let ownedBy: String
-    let permissions: [Permission]?
+    public let id: String
+    public let object: String
+    public let ownedBy: String
+    public let permissions: [Permission]?
     
     /// Convenience getter for `id`
-    var name: String {
+    public var name: String {
         id
     }
     
@@ -30,18 +30,18 @@ public struct Model: HTTPClient.Response {
 extension Model {
     
     public struct Permission: HTTPClient.Response {
-        let id: String
-        let object: String
-        let created: Date
-        let allowCreateEngine: Bool
-        let allowSampling: Bool
-        let allowLogprobs: Bool
-        let allowSearchIndices: Bool
-        let allowView: Bool
-        let allowFineTuning: Bool
-        let organization: String
-        let group: String?
-        let isBlocking: Bool
+        public let id: String
+        public let object: String
+        public let created: Date
+        public let allowCreateEngine: Bool
+        public let allowSampling: Bool
+        public let allowLogprobs: Bool
+        public let allowSearchIndices: Bool
+        public let allowView: Bool
+        public let allowFineTuning: Bool
+        public let organization: String
+        public let group: String?
+        public let isBlocking: Bool
     }
     
 }

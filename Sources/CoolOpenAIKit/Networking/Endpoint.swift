@@ -24,7 +24,7 @@ extension URLRequest {
     /// - parameter: endpoint The endpoint for the request.
     /// - parameter: headers Dictionary containing necessary HTTP headers. Entries with
     /// empty or `nil` values will be skipped.
-    init?<T>(_ encoder: JSONEncoder, endpoint: any Endpoint<T>, headers: [String: String?] = [:]) {
+    public init?<T>(_ encoder: JSONEncoder, endpoint: any Endpoint<T>, headers: [String: String?] = [:]) {
         var components = URLComponents()
         components.scheme = endpoint.scheme
         components.host = endpoint.host

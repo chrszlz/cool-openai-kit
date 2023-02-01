@@ -11,13 +11,13 @@ import Foundation
 public struct ModelsProvider: Provider {
     
     public let client: OpenAI.Client!
-
+    
     // MARK: List Models - /v1/models
     
     /// Retruns a list of currently available models, and provides basic information about each one such as the owner and availability.
     ///
     /// [https://beta.openai.com/docs/api-reference/models](https://beta.openai.com/docs/api-reference/models)
-    func list() async throws -> [Model]? {
+    public func list() async throws -> [Model]? {
         let endpoint = ListModels()
         let response = try await client.execute(endpoint)
         return response?.data
@@ -29,19 +29,19 @@ public struct ModelsProvider: Provider {
     ///
     /// - Parameters:
     ///     - completion: Receives an optional list of models
-    func list(completion: @escaping @Sendable ([Model]?) -> ()) {
+    public func list(completion: @escaping @Sendable ([Model]?) -> ()) {
         let endpoint = ListModels()
         client.execute(endpoint) { response in
             completion(response?.data)
         }
     }
-
+    
     // MARK: Retrieve Model - "/v1/models/\(model)"
     
     /// Returns a specified model instance, providing basic information about the model such as the owner and permissioning.
     ///
     /// [https://beta.openai.com/docs/api-reference/models/retrieve](https://beta.openai.com/docs/api-reference/models/retrieve)
-    func retrieve(model: String) async throws -> Model? {
+    public func retrieve(model: String) async throws -> Model? {
         let endpoint = RetrieveModel(model: model)
         let response = try await client.execute(endpoint)
         return response
@@ -53,7 +53,7 @@ public struct ModelsProvider: Provider {
     ///
     /// - Parameters:
     ///     - completion: Receives an optional model
-    func retrieve(model: String, completion: @escaping @Sendable (Model?) -> ()) {
+    public func retrieve(model: String, completion: @escaping @Sendable (Model?) -> ()) {
         let endpoint = RetrieveModel(model: model)
         client.execute(endpoint, completion: completion)
     }
