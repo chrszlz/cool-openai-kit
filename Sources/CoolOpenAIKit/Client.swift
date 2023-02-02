@@ -33,6 +33,8 @@ public struct OpenAI {
         nonisolated public lazy var models = ModelsProvider(client: self)
         /// Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
         nonisolated public lazy var completions = CompletionsProvider(client: self)
+        /// Given a prompt and/or an input image, the model will generate a new image. Related guide: [Image generation](https://platform.openai.com/docs/guides/images)
+        nonisolated public lazy var images = ImagesProvider(client: self)
         
         public init(config: Configuration? = .init()) {
             guard let config = config else {
