@@ -17,13 +17,9 @@ public struct ImagesProvider: Provider {
     // MARK: Create Image - /v1/images/generations
     
     /// Creates an image given a prompt.
-    public func create(prompt: String, n: Int? = nil, size: Image.Size? = nil, responseFormat: CreateImage.Request.Format? = nil, user: String? = nil) async throws -> [Image]? {
-        let request = CreateImage.Request(prompt: prompt, n: n, size: size, responseFormat: responseFormat, user: user)
-        return try await create(request: request)
-    }
-    
-    public func create(request: CreateImage.Request) async throws -> [Image]? {
-        let endpoint = CreateImage(request: request)
+    public func create(prompt: String, n: Int? = nil, size: Image.Size? = nil, responseFormat: Endpoints.CreateImage.Format? = nil, user: String? = nil) async throws -> [Image]? {
+        let endpoint = Endpoints.CreateImage(prompt: prompt, n: n, size: size, responseFormat: responseFormat, user: user)
+        print("Request: ", endpoint)
         return try await client.execute(endpoint)?.data
     }
     
@@ -31,11 +27,16 @@ public struct ImagesProvider: Provider {
     ///
     /// - Parameters:
     ///     - completion: Receives an optional image
-    public func create(request: CreateImage.Request, _ completion: @escaping @Sendable ([Image]?) -> ()) {
-        let endpoint = CreateImage(request: request)
+    public func create(_ endpoint: Endpoints.CreateImage, _ completion: @escaping @Sendable ([Image]?) -> ()) {
         client.execute(endpoint) { response in
             completion(response?.data)
         }
     }
+    
+}
+
+extension ImagesProvider {
+    
+    public enum Endpoints { }
     
 }
